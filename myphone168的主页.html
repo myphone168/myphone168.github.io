@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myphone168的主页</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+            color: #fff;
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #00ffcc;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ffcc;
+            }
+            to {
+                text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+            }
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            color: #00ffcc;
+            margin-bottom: 15px;
+        }
+
+        .thank-you-message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+        }
+
+        .particle {
+            position: fixed;
+            background: #00ffcc;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* 新增样式，让标题居中 */
+        h2, h3 {
+            text-align: center;
+        }
+
+        /* 新增样式，让正文段落首行缩进两个字符 */
+        .content-section p, .feature-card p {
+            text-indent: 2em;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>欢迎来到myphone168的主页</h1>
+        </header>
+
+        <div class="content-section">
+            <div class="thank-you-message">
+                <p>欢迎来到我的个人主页！在这里，我将与你分享我的生活、兴趣和成长历程。生活就像一场奇妙的旅程，每一个瞬间都值得被铭记和珍惜。我希望通过这个平台，能将我生活中的点滴美好传递给你，让你感受到温暖和快乐。</p>
+                <p>我热衷于探索未知的领域，无论是科技的前沿，还是艺术的魅力，都能让我沉浸其中。科技的发展日新月异，不断改变着我们的生活方式；而艺术则是人类情感的表达，能触动我们内心最柔软的地方。我相信，在这个多元化的世界里，我们总能找到属于自己的热爱。</p>
+                <p>同时，我也期待能在这里结识更多志同道合的朋友，一起交流、学习和成长。每个人都有自己独特的故事和见解，通过分享和交流，我们可以拓宽视野，丰富自己的人生阅历。让我们一起在这个充满无限可能的世界里，追逐梦想，创造美好！</p>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>艺术的魅力</h3>
+                <p>艺术是人类创造力的结晶，它以各种形式展现着世界的美好。绘画、音乐、舞蹈等艺术形式，都能让我们感受到情感的共鸣和心灵的触动。我喜欢欣赏各类艺术作品，从中汲取灵感和力量。每一幅画作都像是一个故事，每一首音乐都能唤起一段回忆。艺术不仅能丰富我们的精神世界，还能让我们以全新的视角去看待生活。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>科技的探索</h3>
+                <p>科技是推动社会进步的重要力量，它不断改变着我们的生活和工作方式。从人工智能到量子计算，从虚拟现实到生物技术，科技的发展日新月异。我对科技充满了好奇心，喜欢探索各种新技术和新应用。科技不仅能提高我们的生活质量，还能为解决全球性问题提供新的思路和方法。让我们一起紧跟科技的步伐，探索未来的无限可能。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>梦想的追逐</h3>
+                <p>每个人心中都有一个梦想，它是我们前进的动力和方向。无论是成为一名科学家、艺术家，还是创业者，只要我们怀揣梦想，并为之努力奋斗，就一定能实现自己的人生价值。在追逐梦想的道路上，我们会遇到各种困难和挑战，但正是这些挫折让我们变得更加坚强和成熟。让我们一起勇敢地追逐梦想，向着光明的未来奋勇前行！</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>我们一起完成</h2>
+            <ul>
+                <li>共同探索更多的艺术形式，发现隐藏在其中的美。</li>
+                <li>紧跟科技发展的潮流，学习和应用新的知识和技能。</li>
+                <li>分享彼此的梦想和目标，互相鼓励和支持，一起成长。</li>
+                <li>在生活中发现更多的美好瞬间，共同创造属于我们的精彩回忆。</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>© myphone168</p>
+        </footer>
+    </div>
+
+    <script>
+        // 创建粒子动画效果
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 2000);
+        }
+
+        setInterval(createParticle, 100);
+    </script>
+</body>
+</html>
+    
