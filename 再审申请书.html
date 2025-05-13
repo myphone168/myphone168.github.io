@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申诉信息管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#005a9c',
+                        secondary: '#0072ce',
+                        neutral: {
+                            100: '#f5f7fa',
+                            200: '#e0e0e0',
+                            300: '#d1d5db',
+                            600: '#666666',
+                            700: '#333333',
+                            800: '#1f2937',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 2px 4px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-indent-2 {
+                text-indent: 2em;
+            }
+            .nav-active {
+                @apply bg-secondary text-white;
+            }
+            .section-padding {
+                @apply py-16 px-8 md:px-12 lg:px-16;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-100 font-sans text-neutral-800 min-h-screen">
+    <!-- 顶部导航栏 - 移动端显示 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-40 lg:hidden">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-primary font-bold text-xl">申诉信息管理系统</h1>
+            <button id="mobile-menu-btn" class="text-primary text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 左侧导航栏 - 桌面端显示 -->
+    <nav id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-primary text-white shadow-lg transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+        <div class="p-6">
+            <h2 class="text-xl font-bold mb-6 hidden lg:block">申诉信息管理系统</h2>
+            <ul class="space-y-1">
+                <li><a href="#history-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">刑事申诉状</a></li>
+                <li><a href="#basic-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">申诉理由</a></li>
+                <li><a href="#complainant-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">申诉请求</a></li>
+                <li><a href="#respondent-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">事实与理由</a></li>
+                <li><a href="#original-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">附件</a></li>
+                <li><a href="#reason-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">此致</a></li>
+                <li><a href="#upload-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">援引法条</a></li>
+                <li><a href="#video-section" class="nav-item block px-4 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">天平啄木鸟</a></li>
+            </ul>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-sm text-neutral-300">
+            <p>© 2025 申诉信息管理系统</p>
+        </div>
+    </nav>
+
+    <!-- 遮罩层 - 移动端导航打开时显示 -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+    <!-- 主内容区域 -->
+    <main class="pt-16 lg:pt-0 lg:ml-64 transition-all duration-300">
+        <div class="container mx-auto section-padding bg-white shadow-card rounded-lg my-8 max-w-5xl">
+            <!-- 刑事申诉状 -->
+            <section id="history-section" class="mb-16">
+                <h2 class="text-2xl font-bold text-center mb-10">刑事申诉状</h2>
+                
+                <div class="prose max-w-none mb-8">
+                    <p class="text-indent-2 mb-4">申诉人：啄木鸟，男，布依族，东东省****县****镇****村****组人，现住东东省降龙县冠山街道奋进社区，身份证号码 99986***************0。</p>
+                    
+                    <p class="text-indent-2">申诉人啄木鸟因 *******************************之规定，提出申诉，并提交新证据。</p>
+                </div>
+            </section>
+
+            <!-- 申诉理由 -->
+            <section id="basic-section" class="mb-16">
+                <h2 class="text-xl font-bold mb-6">申诉理由</h2>
+                
+                <div class="prose max-w-none space-y-6">
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">一、</span>
+                        <p>原审判决认定事实错误。原审判决认定申诉人啄木鸟犯抢劫罪，但事实上，申诉人是*************************而是。</p>
+                    </div>
+                    
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">二、</span>
+                        <p>原审判决适用法律错误。原审判决依据**********************</p>
+                    </div>
+                    
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">三、</span>
+                        <p>原审判决违反法定程序。原审判决在审理过程中，违反了法定程序。例如，***************</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 申诉请求 -->
+            <section id="complainant-section" class="mb-16">
+                <h2 class="text-xl font-bold mb-6">申诉请求</h2>
+                
+                <div class="prose max-w-none space-y-6">
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">一、</span>
+                        <p>请求撤销***************号刑事裁定；</p>
+                    </div>
+                    
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">二、</span>
+                        <p>依法改判申诉人无罪，或发回原审人民法院重新审判；</p>
+                    </div>
+                    
+                    <div class="flex">
+                        <span class="text-primary font-bold mr-2">三、</span>
+                        <p>本案诉讼费用由被申诉人承担。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 事实与理由 -->
+            <section id="respondent-section" class="mb-16">
+                <h2 class="text-xl font-bold mb-6">事实与理由</h2>
+                
+                <div class="prose max-w-none space-y-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">一、关于原审判决认定事实错误的问题</h3>
+                        <p class="text-indent-2">原审判决认定申诉人啄木鸟犯抢劫罪，但事实上，申诉人是在遭受他人辱骂和肢体冲突后，情绪失控才对被害人进行了攻击。申诉人的行为并不构成抢劫罪，而是故意伤害罪。具体事实如下：</p>
+                        
+                        
+                        <p class="text-indent-2 mt-4">因此，原审判决违反法定程序，导致对申诉人的判决不公。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 附件 -->
+            <section id="original-section" class="mb-16">
+                <h2 class="text-xl font-bold mb-6">附件</h2>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <span class="text-primary font-bold mr-2">1.</span>
+                        <div>
+                            <p>申诉状</p>
+                            <p class="text-neutral-600 text-sm">刑事申诉书[1].pdf</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <span class="text-primary font-bold mr-2">2.</span>
+                        <div>
+                            <p>相关证据材料</p>
+                            <p class="text-neutral-600 text-sm">IMG_20230120_123456.jpg</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <span class="text-primary font-bold mr-2">3.</span>
+                        <div>
+                            <p>原审判决书</p>
+                            <p class="text-neutral-600 text-sm">（2019）龙0103刑初821号.pdf</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <span class="text-primary font-bold mr-2">4.</span>
+                        <div>
+                            <p>原审裁定书</p>
+                            <p class="text-neutral-600 text-sm">（2019）龙01刑终667号.pdf</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 此致 -->
+            <section id="reason-section" class="mb-16">
+                <h2 class="text-xl font-bold mb-6">此致</h2>
+                
+                <div class="ml-8">
+                    <p>东东省高级人民法院</p>
+                </div>
+            </section>
+
+            <!-- 申诉法院 -->
+<!-- 援引法条 -->
+<section id="upload-section" class="mb-16">
+    <h2 class="text-xl font-bold mb-6">援引法条</h2>
+
+    <div class="space-y-8">
+        <!-- 再审相关法律 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">一、再审程序相关</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                <li>
+                    《中华人民共和国刑事诉讼法》
+                    <a href="http://gongbao.court.gov.cn/Details/11aaa996a59f5824912be62d3dfa0d.html?sw=" target="_blank" class="text-primary underline ml-2">详见1</a>
+                    <a href="http://gongbao.court.gov.cn/Details/b772fbc86b46cdf2eddda464ef3325.html?sw=" target="_blank" class="text-primary underline ml-2">详见2</a>
+                <p><strong>第八十五条</strong>　公安机关拘留人的时候，必须出示拘留证。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 拘留后，应当立即将被拘留人送看守所羁押，至迟不得超过二十四小时。除无法通知或者涉嫌危害国家安全犯罪、恐怖活动犯罪通知可能有碍侦查的情形以外，应当在拘留后二十四小时以内，通知被拘留人的家属。有碍侦查的情形消失以后，应当立即通知被拘留人的家属。</p><strong>第九十三条</strong>　公安机关逮捕人的时候，必须出示逮捕证。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 逮捕后，应当立即将被逮捕人送看守所羁押。除无法通知的以外，应当在逮捕后二十四小时以内，通知被逮捕人的家属。</p><strong>第一百四十八条</strong>　侦查机关应当将用作证据的鉴定意见告知犯罪嫌疑人、被害人。如果犯罪嫌疑人、被害人提出申请，可以补充鉴定或者重新鉴定。</p><strong>第二百五十二条</strong>　当事人及其法定代理人、近亲属，对已经发生法律效力的判决、裁定，可以向人民法院或者人民检察院提出申诉，但是不能停止判决、裁定的执行。</p><p><strong>第二百五十三条</strong>　当事人及其法定代理人、近亲属的申诉符合下列情形之一的，人民法院应当重新审判：</p><p>&nbsp; &nbsp; &nbsp; &nbsp; （一）有新的证据证明原判决、裁定认定的事实确有错误，可能影响定罪量刑的；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; （二）据以定罪量刑的证据不确实、不充分、依法应当予以排除，或者证明案件事实的主要证据之间存在矛盾的；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; （三）原判决、裁定适用法律确有错误的；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; （四）违反法律规定的诉讼程序，可能影响公正审判的；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; （五）审判人员在审理该案件的时候，有贪污受贿，徇私舞弊，枉法裁判行为的。</p></p></li>
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/286491.html" target="_blank" class="text-primary underline">《最高人民法院关于适用<中华人民共和国刑事诉讼法>的解释》（法释〔2021〕1号）</a></li><p><p>
+	<strong>　　第四百五十七条</strong> 对立案审查的申诉案件，应当在三个月以内作出决定，至迟不得超过六个月。因案件疑难、复杂、重大或者其他特殊原因需要延长审查期限的，参照本解释第二百一十条的规定处理。
+</p>
+<p>
+	　　经审查，具有下列情形之一的，应当根据刑事诉讼法第二百五十三条的规定，决定重新审判：
+</p>
+<p>
+	　　（一）有新的证据证明原判决、裁定认定的事实确有错误，可能影响定罪量刑的；
+</p>
+<p>
+	　　（二）据以定罪量刑的证据不确实、不充分、依法应当排除的；
+</p>
+<p>
+	　　（三）证明案件事实的主要证据之间存在矛盾的；
+</p>
+<p>
+	　　（四）主要事实依据被依法变更或者撤销的；
+</p>
+<p>
+	　　（五）认定罪名错误的；
+</p>
+<p>
+	　　（六）量刑明显不当的；
+</p>
+<p>
+	　　（七）对违法所得或者其他涉案财物的处理确有明显错误的；
+</p>
+<p>
+	　　（八）违反法律关于溯及力规定的；
+</p>
+<p>
+	　　（九）违反法定诉讼程序，可能影响公正裁判的；
+</p>
+<p>
+	　　（十）审判人员在审理该案件时有贪污受贿、徇私舞弊、枉法裁判行为的。
+</p>
+<p>
+	　　申诉不具有上述情形的，应当说服申诉人撤回申诉；对仍然坚持申诉的，应当书面通知驳回。
+</p><p>
+	<strong>　　第四百五十八条 </strong>具有下列情形之一，可能改变原判决、裁定据以定罪量刑的事实的证据，应当认定为刑事诉讼法第二百五十三条第一项规定的“新的证据”：
+</p>
+<p>
+	　　（一）原判决、裁定生效后新发现的证据；
+</p>
+<p>
+	　　（二）原判决、裁定生效前已经发现，但未予收集的证据；
+</p>
+<p>
+	　　（三）原判决、裁定生效前已经收集，但未经质证的证据；
+</p>
+<p>
+	　　（四）原判决、裁定所依据的鉴定意见，勘验、检查等笔录被改变或者否定的；
+</p>
+<p>
+	　　（五）原判决、裁定所依据的被告人供述、证人证言等证据发生变化，影响定罪量刑，且有合理理由的。
+</p></p>
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/407882.html?_refluxos=a10" target="_blank" class="text-primary underline">《最高人民法院关于规范人民法院再审立案的若干意见（试行）》（法发〔2023〕13号）</a><p><p>
+	　　第四条 &nbsp;下级人民法院对已经受理的第一审刑事、民事、行政案件，认为属于下列情形之一，不宜由本院审理的，应当报请上一级人民法院审理：
+</p>
+<p>
+	　　（一）涉及重大国家利益、社会公共利益的；
+</p>
+<p>
+	　　（二）在辖区内属于新类型，且案情疑难复杂的；
+</p>
+<p>
+	　　（三）具有诉源治理效应，有助于形成示范性裁判，推动同类纠纷统一、高效、妥善化解的；
+</p>
+<p>
+	　　（四）具有法律适用指导意义的；
+</p>
+<p>
+	　　（五）上一级人民法院或者其辖区内人民法院之间近三年裁判生效的同类案件存在重大法律适用分歧的；
+</p>
+<p>
+	　　（六）由上一级人民法院一审更有利于公正审理的。
+</p>
+<p>
+	　　上级人民法院对辖区内人民法院已经受理的第一审刑事、民事、行政案件，认为属于上述情形之一，有必要由本院审理的，可以决定提级管辖。
+</p></p></li>
+                <li><a href="http://gongbao.court.gov.cn/Details/813b5b3408498cbc8c2b30beaf234e.html?sw=%e5%85%b3%e4%ba%8e%e8%a7%84%e8%8c%83%e4%ba%ba%e6%b0%91%e6%b3%95%e9%99%a2%e5%86%8d%e5%ae%a1%e7%ab%8b%e6%a1%88%e7%9a%84%e8%8b%a5%e5%b9%b2%e6%84%8f%e8%a7%81%ef%bc%88%e8%af%95%e8%a1%8c%ef%bc%89" target="_blank" class="text-primary underline">《关于规范人民法院再审立案的若干意见（试行）》（法发〔2002〕13号）</a><p><p class="c_content" style="text-indent: 2em; font-size: 16px;">第十条　人民法院对刑事案件的申诉人在刑罚执行完毕后两年内提出的申诉，应当受理；超过两年提出申诉，具有下列情形之一的，应当受理：</p><p class="c_content" style="text-indent: 2em; font-size: 16px;">（一）可能对原审被告人宣告无罪的；</p><p class="c_content" style="text-indent: 2em; font-size: 16px;">（二）原审被告人在本条规定的期限内向人民法院提出申诉，人民法院未受理的；</p><p class="c_content" style="text-indent: 2em; font-size: 16px;">（三）属于疑难、复杂、重大案件的。</p><p class="c_content" style="text-indent: 2em; font-size: 16px;">不符合前款规定的，人民法院不予受理。</p></p></li>
+                <li><a href="https://www.court.gov.cn/zixun/xiangqing/408022.html" target="_blank" class="text-primary underline">《最高人民法院关于加强和规范案件提级管辖和再审提审工作的指导意见》</a></li>
+            </ul>
+        </div>
+
+        <!-- 非法证据排除 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">二、非法证据排除规定</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                <li><a href="http://gongbao.court.gov.cn/Details/6673a4919703f72ce026f8e28fdbe3.html?_refluxos=a10" target="_blank" class="text-primary underline">《办理刑事案件排除非法证据规程》（法发〔2024〕12号）</a></li>
+                <li><a href="https://www.spp.gov.cn/spp/flfg/sfjs/201212/t20121228_52203.shtml?_refluxos=a10" target="_blank" class="text-primary underline">《关于办理刑事案件排除非法证据若干问题的规定》（法发〔2010〕20号）</a></li>
+                <li><a href="https://www.court.gov.cn/shenpan/xiangqing/6619.html" target="_blank" class="text-primary underline">《最高人民法院关于建立健全防范刑事冤假错案工作机制的意见》（法发〔2013〕11号）</a><p><p style="line-height: 26pt; text-indent: 33pt"><font color="#000000"><span style="font-size: 16pt">8</span><span style="font-size: 16pt">、采用刑讯逼供或者冻、饿、晒、烤、疲劳审讯等非法方法收集的被告人供述，应当排除。</span></font></p>
+<p style="line-height: 26pt; text-indent: 33pt"><span style="font-size: 16pt"><font color="#000000">除情况紧急必须现场讯问以外，在规定的办案场所外讯问取得的供述，未依法对讯问进行全程录音录像取得的供述，以及不能排除以非法方法取得的供述，应当排除。</font></span></p>
+<p style="line-height: 26pt; text-indent: 33pt"><font color="#000000"><span style="font-size: 16pt">9</span><span style="font-size: 16pt">、现场遗留的可能与犯罪有关的指纹、血迹、精斑、毛发等证据，未通过指纹鉴定、<span>DNA</span>鉴定等方式与被告人、被害人的相应样本作同一认定的，不得作为定案的根据。涉案物品、作案工具等未通过辨认、鉴定等方式确定来源的，不得作为定案的根据。</span></font></p>
+<p style="line-height: 26pt; text-indent: 33pt"><span style="font-size: 16pt"><font color="#000000">对于命案，应当审查是否通过被害人近亲属辨认、指纹鉴定、<span>DNA</span>鉴定等方式确定被害人身份。</font></span></p>
+<p style="line-height: 26pt; text-indent: 33pt"><b><span style="font-size: 16pt"><font color="#000000">三、切实遵守法定诉讼程序，强化案件审理机制</font></span></b></p></p></li>
+            </ul>
+        </div>
+
+        <!-- 文书规范 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">三、裁判文书规范</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/73.html?_refluxos=a10" target="_blank" class="text-primary underline">《裁判文书引用法律规范性文件规定》（法释〔2009〕14号）</a></li>
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/29531.html?_refluxos=a10" target="_blank" class="text-primary underline">《关于同一案件多裁判文书案号使用的通知》（法〔2016〕27号）</a></li>
+                <li><a href="https://www.court.gov.cn/jianshe/xiangqing/2242.html?_refluxos=a10" target="_blank" class="text-primary underline">《法官行为规范》（法发〔2010〕54号）</a><p><p style="line-height: 26pt; text-indent: 30pt"><span style="font-size: 15pt">第五十三条</span><span style="font-size: 15pt">&nbsp;</span><span style="font-size: 15pt">法律条文的引用</span></p>
+<p style="line-height: 26pt"><span style="font-size: 15pt">　　（一） 在裁判理由部分应当引用法律条款原文，必须引用到法律的条、款、项；</span></p>
+<p style="line-height: 26pt"><span style="font-size: 15pt">　　（二） 说理中涉及多个争议问题的，应当一论一引；</span></p>
+<p style="line-height: 26pt"><span style="font-size: 15pt">　　（三） 在判决主文理由部分最终援引法律依据时，只引用法律条款序号。</span></p></p></li>
+            </ul>
+        </div>
+
+        <!-- 司法公开 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">四、司法公开规定</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/36562.html?_refluxos=a10" target="_blank" class="text-primary underline">《人民法院庭审录音录像规定》（法释〔2017〕5号）</a></li>
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/85532.html?_refluxos=a10" target="_blank" class="text-primary underline">《最高人民法院关于人民法院通过互联网公开审判流程信息的规定》（法释〔2018〕7号）</a><p>第九条 下列诉讼文书应当于送达后通过互联网向当事人及其法定代理人、诉讼代理人、辩护人公开：<br />
+　　（一）起诉状、上诉状、再审申请书、申诉书、国家赔偿申请书、答辩状等诉讼文书；<br />
+　　（二）受理案件通知书、应诉通知书、参加诉讼通知书、出庭通知书、合议庭组成人员通知书、传票等诉讼文书；<br />
+<b><i><span style="color: #d32f2f; text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">
+　　（三）判决书、裁定书、决定书、调解书，以及其他有中止、终结诉讼程序作用，或者对当事人实体权利有影响、对当事人程序权利有重大影响的裁判文书；
+</span></i></b><br />
+　　（四）法律、司法解释规定应当公开，或者人民法院认为可以公开的其他诉讼文书。<br /></p></li>
+            </ul>
+        </div>
+
+        <!-- 司法责任 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">五、司法责任制度</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/338521.html?_refluxos=a10" target="_blank" class="text-primary underline">《法官惩戒工作程序规定（试行）》（法〔2021〕319号）</a><p><p>
+	<span style="font-size:18px;font-family:&quot;">　　第四条&nbsp; 法官在履行审判职责过程中，故意违反法律法规办理案件，或者因重大过失导致裁判结果错误并造成严重后果，需要予以惩戒的，依照本规定办理。</span>
+</p>
+<p>
+	<span style="font-size:18px;font-family:&quot;">　　第五条&nbsp; 认定法官是否违反审判职责，适用《最高人民法院关于完善人民法院司法责任制的若干意见》等有关规定。</span>
+</p></p></li>
+                <li><a href="https://www.court.gov.cn/fabu/xiangqing/15590.html?_refluxos=a10" target="_blank" class="text-primary underline">《人民法院司法责任制意见》（法发〔2015〕13号）</a><p><p style="text-indent:2em;">
+	26.有下列情形之一的，应当依纪依法追究相关人员的违法审判责任：
+</p>
+<p style="text-indent:2em;">
+	（1）审理案件时有贪污受贿、徇私舞弊、枉法裁判行为的；
+</p>
+<p style="text-indent:2em;">
+	（2）违反规定私自办案或者制造虚假案件的；
+</p>
+<p style="text-indent:2em;">
+	（3）涂改、隐匿、伪造、偷换和故意损毁证据材料的，或者因重大过失丢失、损毁证据材料并造成严重后果的；
+</p>
+<p style="text-indent:2em;">
+	（4）向合议庭、审判委员会汇报案情时隐瞒主要证据、重要情节和故意提供虚假材料的，或者因重大过失遗漏主要证据、重要情节导致裁判错误并造成严重后果的；
+</p>
+<p style="text-indent:2em;">
+	（5）制作诉讼文书时，故意违背合议庭评议结果、审判委员会决定的，或者因重大过失导致裁判文书主文错误并造成严重后果的；
+</p>
+<p style="text-indent:2em;">
+	（6）违反法律规定，对不符合减刑、假释条件的罪犯裁定减刑、假释的，或者因重大过失对不符合减刑、假释条件的罪犯裁定减刑、假释并造成严重后果的；
+</p>
+<p style="text-indent:2em;">
+	（7）其他故意违背法定程序、证据规则和法律明确规定违法审判的，或者因重大过失导致裁判结果错误并造成严重后果的。
+</p></p></li>
+            </ul>
+        </div>
+
+        <!-- 程序法依据 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">六、核心程序法条</h3>
+            <ul class="list-decimal pl-12 space-y-2">
+                <li><a href="https://gat.sc.gov.cn/scgat/c108968/2024/10/15/6914533aa6954b4f9c780a340c418735.shtml" target="_blank" class="text-primary underline">《中华人民共和国刑法》</a></li>
+            </ul>
+            <p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百三十四条　【故意伤害罪】故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　犯前款罪，致人重伤的，处三年以上十年以下有期徒刑；致人死亡或者以特别残忍手段致人重伤造成严重残疾的，处十年以上有期徒刑、无期徒刑或者死刑。本法另有规定的，依照规定。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百三十四条之一　【组织出卖人体器官罪】组织他人出卖人体器官的，处五年以下有期徒刑，并处罚金；情节严重的，处五年以上有期徒刑，并处罚金或者没收财产。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　【故意伤害罪】【故意杀人罪】未经本人同意摘取其器官，或者摘取不满十八周岁的人的器官，或者强迫、欺骗他人捐献器官的，依照本法第二百三十四条、第二百三十二条的规定定罪处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　【盗窃、侮辱、故意毁坏尸体、尸骨、骨灰罪】违背本人生前意愿摘取其尸体器官，或者本人生前未表示同意，违反国家规定，违背其近亲属意愿摘取其尸体器官的，依照本法第三百零二条的规定定罪处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百四十三条　【诬告陷害罪】捏造事实诬告陷害他人，意图使他人受刑事追究，情节严重的，处三年以下有期徒刑、拘役或者管制；造成严重后果的，处三年以上十年以下有期徒刑。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　国家机关工作人员犯前款罪的，从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　不是有意诬陷，而是错告，或者检举失实的，不适用前两款的规定。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百四十七条　【刑讯逼供罪】【暴力取证罪】司法工作人员对犯罪嫌疑人、被告人实行刑讯逼供或者使用暴力逼取证人证言的，处三年以下有期徒刑或者拘役。致人伤残、死亡的，依照本法第二百三十四条、第二百三十二条的规定定罪从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百六十三条　【抢劫罪】以暴力、胁迫或者其他方法抢劫公私财物的，处三年以上十年以下有期徒刑，并处罚金；有下列情形之一的，处十年以上有期徒刑、无期徒刑或者死刑，并处罚金或者没收财产：</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（一）入户抢劫的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（二）在公共交通工具上抢劫的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（三）抢劫银行或者其他金融机构的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（四）多次抢劫或者抢劫数额巨大的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（五）抢劫致人重伤、死亡的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（六）冒充军警人员抢劫的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（七）持枪抢劫的；</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　（八）抢劫军用物资或者抢险、救灾、救济物资的。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百八十条　【伪造、变造、买卖国家机关公文、证件、印章罪】【盗窃、抢夺、毁灭国家机关公文、证件、印章罪】伪造、变造、买卖或者盗窃、抢夺、毁灭国家机关的公文、证件、印章的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利，并处罚金；情节严重的，处三年以上十年以下有期徒刑，并处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　【伪造公司、企业、事业单位、人民团体印章罪】伪造公司、企业、事业单位、人民团体的印章的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利，并处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　【伪造、变造、买卖身份证件罪】伪造、变造、买卖居民身份证、护照、社会保障卡、驾驶证等依法可以用于证明身份的证件的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利，并处罚金；情节严重的，处三年以上七年以下有期徒刑，并处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百八十条之一　【使用虚假身份证件、盗用身份证件罪】在依照国家规定应当提供身份证明的活动中，使用伪造、变造的或者盗用他人的居民身份证、护照、社会保障卡、驾驶证等依法可以用于证明身份的证件，情节严重的，处拘役或者管制，并处或者单处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　有前款行为，同时构成其他犯罪的，依照处罚较重的规定定罪处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第二百八十条之二　【冒名顶替罪】盗用、冒用他人身份，顶替他人取得的高等学历教育入学资格、公务员录用资格、就业安置待遇的，处三年以下有期徒刑、拘役或者管制，并处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　组织、指使他人实施前款行为的，依照前款的规定从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　国家工作人员有前两款行为，又构成其他犯罪的，依照数罪并罚的规定处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第三百零七条　【妨害作证罪】以暴力、威胁、贿买等方法阻止证人作证或者指使他人作伪证的，处三年以下有期徒刑或者拘役；情节严重的，处三年以上七年以下有期徒刑。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　【帮助毁灭、伪造证据罪】帮助当事人毁灭、伪造证据，情节严重的，处三年以下有期徒刑或者拘役。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　司法工作人员犯前两款罪的，从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第三百零七条之一　【虚假诉讼罪】以捏造的事实提起民事诉讼，妨害司法秩序或者严重侵害他人合法权益的，处三年以下有期徒刑、拘役或者管制，并处或者单处罚金；情节严重的，处三年以上七年以下有期徒刑，并处罚金。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　单位犯前款罪的，对单位判处罚金，并对其直接负责的主管人员和其他直接责任人员，依照前款的规定处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　有第一款行为，非法占有他人财产或者逃避合法债务，又构成其他犯罪的，依照处罚较重的规定定罪从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　司法工作人员利用职权，与他人共同实施前三款行为的，从重处罚；同时构成其他犯罪的，依照处罚较重的规定定罪从重处罚。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　第三百九十七条　【滥用职权罪】【玩忽职守罪】国家机关工作人员滥用职权或者玩忽职守，致使公共财产、国家和人民利益遭受重大损失的，处三年以下有期徒刑或者拘役；情节特别严重的，处三年以上七年以下有期徒刑。本法另有规定的，依照规定。</span></p>
+<p align="" style="margin-top: 2em; margin-bottom: 0.5em; text-indent: 2em; text-align: justify; line-height: 2; font-family: 宋体; font-size: 12pt;"><span style="font-family: 宋体; font-size: 12pt;">　　国家机关工作人员徇私舞弊，犯前款罪的，处五年以下有期徒刑或者拘役；情节特别严重的，处五年以上十年以下有期徒刑。本法另有规定的，依照规定。</span></p></p>
+        </div>
+
+        <!-- 其他相关 -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">七、关联规定</h3>
+            <ul class="list-disc pl-8 space-y-2">
+                                <li><a href="https://www.mps.gov.cn/n6557558/c7684065/content.html" target="_blank" class="text-primary underline">《公安机关办理刑事案件程序规定》（公安部令第127号）</a><p>	<p><strong>　　第二百三十九条</strong> 为了查明案情，解决案件中某些专门性问题，应当指派、聘请有专门知识的人进行鉴定。</p>
+        <p>需要聘请有专门知识的人进行鉴定，应当经县级以上公安机关负责人批准后，制作鉴定聘请书。</p>
+	<p><strong>　　第二百四十条</strong>公安机关应当为鉴定人进行鉴定提供必要的条件，及时向鉴定人送交有关检材和对比样本等原始材料，介绍与鉴定有关的情况，并且明确提出要求鉴定解决的问题。</p>
+        <p>禁止暗示或者强迫鉴定人作出某种鉴定意见。</p>
+	<p><strong>　　第二百四十一条</strong> 侦查人员应当做好检材的保管和送检工作，并注明检材送检环节的责任人，确保检材在流转环节中的同一性和不被污染。</p>
+        <p>需要聘请有专门知识的人进行鉴定，应当经县级以上公安机关负责人批准后，制作鉴定聘请书。</p>
+	<p><strong>　　第二百四十二条</strong> 鉴定人应当按照鉴定规则，运用科学方法独立进行鉴定。鉴定后，应当出具鉴定意见，并在鉴定意见书上签名，同时附上鉴定机构和鉴定人的资质证明或者其他证明文件。</p>
+        <p>多人参加鉴定，鉴定人有不同意见的，应当注明。</p></p></li>
+                <li>
+                    <a href="https://www.xiangshan.gov.cn/art/2020/1/21/art_1229682852_4092176.html" target="_blank" class="text-primary underline">《公安机关现场执法视音频记录规定》（公通字〔2016〕14号）</a>
+                    <p>
+                        <p style="text-align: left; text-indent: 2em;">第四条&nbsp; 对于以下现场执法活动，公安机关应当进行现场执法视音频记录：</p>
+                        <p style="text-align: left; text-indent: 2em;">（一）接受群众报警或者110指令后处警；</p>
+                        <p style="text-align: left; text-indent: 2em;">（二）当场盘问、检查；</p>
+                        <p style="text-align: left; text-indent: 2em;">（三）对日常工作中发现的违反治安管理、出入境管理、消防管理、道路交通安全管理等违法犯罪行为和道路交通事故等进行现场处置、当场处罚；</p>
+                        <p style="text-align: left; text-indent: 2em;">（四）办理行政、刑事案件进行现场勘验、检查、搜查、扣押、辨认、扣留；</p>
+                        <p style="text-align: left; text-indent: 2em;">（五）消防管理、道路交通安全管理等领域的排除妨害、恢复原状和强制停止施工、停止使用、停产停业等行政强制执行；</p>
+                        <p style="text-align: left; text-indent: 2em;">（六）处置重大突发事件、群体性事件。</p>
+                        <p style="text-align: left; text-indent: 2em;">地方公安机关和各警种可以根据本地区、本警种实际情况，确定其他进行现场执法视音频记录的情形。</p>
+                        <p style="text-align: left; text-indent: 2em;">第十三条&nbsp; 现场执法视音频资料的保存期限原则上应当不少于六个月。</p>
+                        <p style="text-align: left; text-indent: 2em;">
+                            <b style="text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">
+                                对于记录以下情形的现场执法视音频资料，应当永久保存：
+                            </b>
+                        </p>
+                        <p style="text-align: left; text-indent: 2em;">
+                            <b style="text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">（一）作为行政、刑事案件证据使用的；</b>
+                        </p>
+                        <p style="text-align: left; text-indent: 2em;">
+                            <b style="text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">（二）当事人或者现场其他人员有阻碍执法、妨害公务行为的；</b>
+                        </p>
+                        <p style="text-align: left; text-indent: 2em;">
+                            <b style="text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">（三）处置重大突发事件、群体性事件的；</b>
+                        </p>
+                        <p style="text-align: left; text-indent: 2em;">
+                            <b style="text-decoration: underline; text-decoration-color: #d32f2f; text-decoration-thickness: 2px; text-underline-position: under;">（四）其他重大、疑难、复杂的警情。</b>
+                        </p>
+                    </p>
+                </li>
+                <li><a href="https://www.mps.gov.cn/n6557558/c5171220/content.html?_refluxos=a10" target="_blank" class="text-primary underline">《人民警察执法过错责任追究规定》（公安部令第138号）</a><p><p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; <strong>第五条</strong>&nbsp; 执法办案人、鉴定人、审核人、审批人都有故意或者过失造成执法过错的，应当根据各自对执法过错所起的作用，分别承担责任。</span></p><p><p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; <strong>第十一条&nbsp; </strong>对其他执法过错情形，应当根据公安机关人民警察在执法办案中各自承担的职责，区分不同情况，分别追究有关人员的责任。</span></p><p> </p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; <strong>第十三条</strong>&nbsp; 追究行政纪律责任的，由人事部门或者纪检监察部门依照《行政机关公务员处分条例》和《公安机关人民警察纪律条令》等规定依法给予处分；构成犯罪的，依法移送有关司法机关处理。</span></p><p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; <strong>第十五条</strong>&nbsp; 公安机关依法承担国家赔偿责任的案件，除依照本规定追究执法过错责任外，还应当依照《中华人民共和国国家赔偿法》的规定，向有关责任人员追偿部分或者全部赔偿费用。</span></p><p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; <strong>第十七条</strong>&nbsp; 发生执法过错案件，影响恶劣、后果严重的，除追究直接责任人员的责任外，还应当依照有关规定追究公安机关领导责任。</span></p><p><span style="font-size: 18px">&nbsp;&nbsp;&nbsp; 年度内发生严重的执法过错或者发生多次执法过错的公安机关和执法办案部门，本年度不得评选为先进集体。</span></p></p></li>
+                <li>
+                    <a href="https://www.mps.gov.cn/n6557558/c5171220/content.html?_refluxos=a10" target="_blank" class="text-primary underline"></a>
+                    <li>
+                        <a href="http://www.drxsfd.com/xf/xx2.asp?bh=9499" target="_blank" class="text-primary underline">《公安机关刑事案卷立卷规范》（公法〔2014〕1080 号）</a>
+                        <p>
+                            <b><i>一、立卷基本规范******（三）刑事案卷分为诉讼卷（又称正卷）和侦查工作卷（又称副卷）两大部分。诉讼卷主要包括对外使用的法律文书和证明案件事实的证据材料，组装后随案移送人民检察院，供诉讼使用。侦查工作卷主要包括不对外发生法律效力的内部审批文书、案件研究记录以及有保存价值但不需作为刑事诉讼证据使用的其他材料，装订后存档备查。</i></b>
+                        </p>
+
+采取技术侦查制作的法律文书和获取的证据材料，作为证据使用的，应当将有关法律文书和证据材料归入诉讼卷随案移送，必要时单独立卷，标注密级；不作为证据使用的，归入侦查工作卷，不随案移送；与案件无关的材料必须及时销毁。</p><p>二、诉讼卷立卷规范
+
+<b><i>诉讼卷，是公安机关对侦查终结的案件，根据规定移送同级人民检察院审查起诉的案卷。诉讼卷可以分为诉讼文书卷和证据材料卷两类。</i>
+<p>
+******（二）证据材料卷立卷规范******
+<span style="font-weight:bold;font-style:italic;text-decoration:underline;text-decoration-color:red;text-decoration-thickness:2px;text-underline-position:under;">
+视听资料、电子数据的原始载体必须移送的，应当放入资料袋中，并附移交清单及制作或者来源说明。
+</span>
+视听资料、电子数据，可以通过截图、照片、文字打印、文字翻译等形式转换，其原始载体应当妥善保管。对视听资料，制作说明中应当附有提取或者制作过程的说明，并写明制作人、持有人身份、制作时间、地点、条件和方法，并由制作人签名。对电子数据，应当附有提取过程及原始存储介质存放地点的说明，写明收集的程序、方式是否符合法律及有关技术规范等内容，并由提取人签名。
+</p></b>
+
+                <li><a href="https://www.110.com/fagui/law_22186.html" target="_blank" class="text-primary underline">《人民法院诉讼档案管理办法》法(〔2013〕283号)【注1984年】</a></li>
+            </ul>
+            <p>第九条 刑事一审诉讼文书材料的排列顺序：
+　　（１）卷宗封面；（２）卷内目录；（３）案件移送书；（４）起诉书正本；（５）起诉书附件；（６）阅卷笔录；（７）准备庭笔录；（８）送达起诉书笔录；（９）审问笔录；（１０）调查笔录或调查取证材料；（１１）聘请、指定、委托辩护人的有关材料；（１２）开庭前的通知、传票、提票等；（１３）开庭公告；（１４）审判庭审判笔录；（１５）审判庭询问证人笔录；（１６）辩护词、公诉词；（１７）合议庭评议笔录；（１８）案情报告；（１９）审判委员会决议或记录；（２０）判决书或裁定书、调解书原本和正本；（２１）宣判笔录；（２２）判决书和裁定书等送达回证；（２３）抗诉书；（２４）移送上诉案件报告或上诉案件移送书；（２５）上级法院退卷函；（２６）上级法院判决书或裁定书正本；（２７）执行通知书存根和回执（释放证回执）；（２８）赃、证物移送清单和处理手续材料；（２９）备考表；（３０）卷底。</p>
+
+            </ul>
+        </div>
+    </div>
+</section>            
+
+            <!-- 天平啄木鸟 -->
+            <section id="video-section">
+                <h2 class="text-xl font-bold mb-6 text-neutral-800 opacity-10 text-center transform rotate-[-15deg] select-none pointer-events-none font-serif italic tracking-wide">
+                    天平啄木鸟设计
+                </h2>
+                
+                <div class="flex flex-col items-end">
+                    <div class="mb-2">申诉人：啄木鸟</div>
+                    <div>2025年5月15日</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white rounded-full p-3 shadow-lg transform transition-transform duration-300 translate-y-20 opacity-0 hover:bg-secondary focus:outline-none">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 导航栏交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('section');
+            const backToTopBtn = document.getElementById('backToTop');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            // 平滑滚动
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // 关闭移动端菜单
+                        if (window.innerWidth < 1024) {
+                            sidebar.classList.add('-translate-x-full');
+                            overlay.classList.add('hidden');
+                        }
+                        
+                        // 平滑滚动到目标位置
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 更新导航高亮
+                        updateNavHighlight(targetId);
+                    }
+                });
+            });
+            
+            // 滚动时更新导航高亮
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                updateNavHighlight(current);
+                
+                // 显示/隐藏返回顶部按钮
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                }
+            });
+            
+            // 返回顶部按钮点击事件
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 移动端菜单按钮点击事件
+            mobileMenuBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            });
+            
+            // 点击遮罩层关闭菜单
+            overlay.addEventListener('click', function() {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+            
+            // 更新导航高亮
+            function updateNavHighlight(currentId) {
+                navItems.forEach(item => {
+                    item.classList.remove('nav-active');
+                    if (item.getAttribute('href') === currentId) {
+                        item.classList.add('nav-active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>    
